@@ -9,7 +9,10 @@ import sortBy from 'sort-by'
 import ListBooks  from './ListBooks'
 
 class SearchBooks extends React.Component {
+    static propTypes = {
+        books: PropTypes.array.isRequired,
 
+    }
 
     state = {
         query:''
@@ -19,9 +22,6 @@ class SearchBooks extends React.Component {
         this.setState({ query: query.trim() })
     }
 
-    clearQuery = () => {
-        this.setState({ query: '' })
-    }
 
 
     render() {
@@ -36,7 +36,7 @@ class SearchBooks extends React.Component {
         } else {
             showingBooks = books
         }
-
+        showingBooks.sort(sortBy('title'))
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -53,14 +53,15 @@ class SearchBooks extends React.Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid"></ol>
-                    {query}
-                    <ListBooks books = {showingBooks}/>
+                    <ol className="books-grid">
+                    <ListBooks books={showingBooks}/>
+                    </ol>
                 </div>
             </div>
         )
     }
 }
+
 
 
 export default SearchBooks;
