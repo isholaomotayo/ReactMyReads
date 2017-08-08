@@ -1,5 +1,5 @@
 import React  from 'react'
-import {Route} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 class ListBooks extends React.Component {
@@ -7,12 +7,12 @@ class ListBooks extends React.Component {
         let books = this.props.books;
 
         return (
-            <div>
+            <div className="list-books">
+                <div className="list-books-title"><h1>MyReads</h1></div>
                 {books.map((book) =>
                     <div key={book.id} className="list-books-content">
-                        <div>
-                            <div className="bookshelf">
-                                <h2 className="bookshelf-title">Currently Reading</h2>
+                       <div className="bookshelf">
+                                <h2 className="bookshelf-title">{book.shelf}</h2>
                                 <div className="bookshelf-books">
                                     <ol className="books-grid">
                                         <li>
@@ -21,7 +21,7 @@ class ListBooks extends React.Component {
                                                     <div className="book-cover" style={{
                                                         width: 128,
                                                         height: 193,
-                                                        backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+                                                        backgroundImage: `url(${book.imageLinks.thumbnail})`
                                                     }}></div>
                                                     <div className="book-shelf-changer">
                                                         <select>
@@ -42,11 +42,13 @@ class ListBooks extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
                 )}
+                <div className="open-search">
+                    <Link
+                    to='/search'
+                    >Search Books </Link>
+                </div>
             </div>
-
-
         )
     }
 }
