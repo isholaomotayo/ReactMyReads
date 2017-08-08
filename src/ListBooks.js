@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom'
 
 
 class ListBooks extends React.Component {
+
+
     render() {
-        let books = this.props.books;
+        const { books } = this.props
+
 
         return (
             <div className="list-books">
@@ -12,7 +15,7 @@ class ListBooks extends React.Component {
                 {books.map((book) =>
                     <div key={book.id} className="list-books-content">
                        <div className="bookshelf">
-                                <h2 className="bookshelf-title">{book.shelf}</h2>
+                           <h2 className="bookshelf-title">{book.shelf}</h2>
                                 <div className="bookshelf-books">
                                     <ol className="books-grid">
                                         <li>
