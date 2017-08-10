@@ -244,19 +244,24 @@ class BooksApp extends React.Component {
         BooksAPI.getAll().then((books) => {
             this.setState({books})
         })
+
     }
+
+    onSearch = (query) => {
+        BooksAPI.search(query, 5).then((books) => {
+            this.setState({books})
+        })
+    }
+
 
     onShelfChange = (bookObject, bookShelf) => {
         bookObject.shelf=bookShelf
 
         BooksAPI.update(bookObject, bookShelf).then( (bookObject , bookShelf) => {
             this.setState( (state) => ({
-                books : state.books.filter((b) => b.id !== bookObject.id).concat( bookObject)
+                books : state.books.filter((b) => b.id !== bookObject.id)
             }))
         })
-
-
-        //console.log( bookObject, bookShelf)
     }
 
 
@@ -304,6 +309,7 @@ class BooksApp extends React.Component {
                     <SearchBooks
                         books={this.state.books}
                         handleShelfChange={this.onShelfChange}
+                        search={this.onSearch}
                     />
                 )}
                 />
