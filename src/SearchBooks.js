@@ -22,8 +22,6 @@ class SearchBooks extends React.Component {
         this.setState({ query: query.trim() })
     }
 
-
-
     render() {
         const { books } = this.props
         const { query } =this.state
@@ -53,9 +51,12 @@ class SearchBooks extends React.Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid">
-                    <ListBooks books={showingBooks}/>
-                    </ol>
+
+                    <ListBooks
+                        books={showingBooks}
+                        handleShelfChange={this.props.handleShelfChange}
+                    />
+
                 </div>
             </div>
         )
