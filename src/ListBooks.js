@@ -1,5 +1,6 @@
 import React  from 'react'
 import PropTypes from 'prop-types'
+import sortBy from 'sort-by'
 
 
 class ListBooks extends React.Component {
@@ -11,10 +12,11 @@ class ListBooks extends React.Component {
 
     render() {
         const {books } = this.props
+        books.sort(sortBy('title'))
         return (
             <ol className="books-grid">
                 {books.map((book) =>
-                    <li key={book.id}>
+                    <li key={book.id+book.shelf}>
                         <div className="book">
                             <div className="book-top">
                                 <div className="book-cover" style={{
@@ -25,12 +27,11 @@ class ListBooks extends React.Component {
                                 }}></div>
                                 <div className="book-shelf-changer">
                                     <select
-                                        value={book.shelf}
+                                        value={book.shelf || 'none'}
                                         onChange={(event) => this.props.handleShelfChange(book, event.target.value)}
                                     >
                                         <option value="none" disabled>Move to...</option>
-                                        <option value="currentlyReading">Currently Reading
-                                        </option>
+                                        <option value="currentlyReading">Currently Reading</option>
                                         <option value="wantToRead" >Want to Read</option>
                                         <option value="read"  > Read</option>
                                         <option value="none"  >None</option>

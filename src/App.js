@@ -3,29 +3,9 @@ import {Route, Link} from 'react-router-dom'
 
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
-import ListBooks from './ListBooks'
+import BookShelf from './BookShelf'
 import './App.css'
 
-
-class BookShelf extends React.Component{
-    c2s = (s) => {
-      return s.replace( /([A-Z])/g, " $1" ).charAt(0).toUpperCase() + s.replace( /([A-Z])/g, " $1" ).slice(1)
-    }
-
-    render(){
-        return(
-            <div className="bookshelf">
-                <h2 className="bookshelf-title">{this.c2s(this.props.shelf)}</h2>
-                <div className="bookshelf-books">
-                    <ListBooks
-                        books={this.props.books}
-                        handleShelfChange={this.props.handleShelfChange}
-                    />
-                </div>
-            </div>
-        )
-    }
-}
 
 
 class BooksApp extends React.Component {
@@ -237,33 +217,32 @@ class BooksApp extends React.Component {
                     "shelf": "read"
                 }
         ],
-        books:[]
+        books:[],
+        search:[]
     }
 
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
             this.setState({books})
-        })
+                    })
 
     }
 
     onSearch = (query) => {
-        BooksAPI.search(query, 5).then((books) => {
-            this.setState({books})
+        BooksAPI.search(query, 10).then((booksResult) => {
+            this.setState((state) => ({search: booksResult}))
         })
     }
 
 
     onShelfChange = (bookObject, bookShelf) => {
         bookObject.shelf=bookShelf
-
-        BooksAPI.update(bookObject, bookShelf).then( (bookObject , bookShelf) => {
+        BooksAPI.update(bookObject, bookShelf).then( () => {
             this.setState( (state) => ({
-                books : state.books.filter((b) => b.id !== bookObject.id)
+                books : state.books
             }))
         })
     }
-
 
 
     render() {
@@ -276,19 +255,19 @@ class BooksApp extends React.Component {
 
                         <div className="list-books-content">
 
-                            <BookShelf books={this.state.books.filter(
+                           <BookShelf books={this.state.search.concat(this.state.books).filter(
                                 (book) => book.shelf ==='currentlyReading')}
                                        shelf="currentlyReading"
                                        handleShelfChange={this.onShelfChange}
                             />
 
-                            <BookShelf books={this.state.books.filter(
+                            <BookShelf books={this.state.search.concat(this.state.books).filter(
                                 (book) => book.shelf ==='wantToRead')}
                                        shelf="wantToRead"
                                        handleShelfChange={this.onShelfChange}
                             />
 
-                            <BookShelf books={this.state.books.filter(
+                            <BookShelf books={this.state.search.concat(this.state.books).filter(
                                 (book) => book.shelf ==='read')}
                                        shelf='read'
                                        handleShelfChange={this.onShelfChange}
@@ -307,7 +286,7 @@ class BooksApp extends React.Component {
 
                 <Route exact path='/search' render={() => (
                     <SearchBooks
-                        books={this.state.books}
+                        books={this.state.search.concat(this.state.books)}
                         handleShelfChange={this.onShelfChange}
                         search={this.onSearch}
                     />
