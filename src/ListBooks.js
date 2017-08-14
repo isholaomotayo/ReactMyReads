@@ -21,7 +21,7 @@ class ListBooks extends React.Component {
                             <div className="book-top">
                                 <div className="book-cover" style={{
                                     width: 128,
-                                    height: 193,
+                                    height: 183,
                                     backgroundRepeat:'no-repeat',
                                     backgroundImage: `url(${book.imageLinks.thumbnail})`
                                 }}></div>
