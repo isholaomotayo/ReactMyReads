@@ -14,7 +14,7 @@ class ListBooks extends React.Component {
         const {books } = this.props
         books.sort(sortBy('title'))
         return (
-            <ol className="books-grid">
+            <ol className="books-grid book-wrapper">
                 {books.map((book) =>
                     <li key={book.id+book.shelf}>
                         <div className="book">

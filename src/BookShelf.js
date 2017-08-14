@@ -8,9 +8,9 @@ class BookShelf extends React.Component{
 
     render(){
         return(
-            <div className="bookshelf">
+            <div className="bookshelf ">
                 <h2 className="bookshelf-title">{this.c2s(this.props.shelf)}</h2>
-                <div className="bookshelf-books">
+                <div className="bookshelf-books bookshelf--frame">
                     <ListBooks
                         books={this.props.books}
                         handleShelfChange={this.props.handleShelfChange}
