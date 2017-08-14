@@ -187,6 +187,9 @@ body, .app {
     font-size: 0.8em;
 }
 
+
+/* Bookshelf stle concept from https://codepen.io/KurtTrowbridge/pen/vGWWNX */
+
 .bookshelf--frame {
     max-width: 1200px;
     margin: 0 auto;
@@ -222,3 +225,5 @@ body, .app {
     max-height: 100%;
 }
 
+
+/* Bookshelf stle concept from https://codepen.io/KurtTrowbridge/pen/vGWWNX */
