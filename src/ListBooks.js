@@ -8,15 +8,19 @@ class ListBooks extends React.Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         handleShelfChange: PropTypes.func.isRequired
+
+
     }
 
     render() {
-        const {books } = this.props
+        const {books} = this.props
         books.sort(sortBy('title'))
         return (
             <ol className="books-grid book-wrapper">
-                {books.map((book) =>
-                    <li key={book.id+book.shelf}>
+
+                {books.map((book, index) =>
+                    <li key={book.id}>
+
                         <div className="book">
                             <div className="book-top">
                                 <div className="book-cover" style={{
@@ -28,9 +32,11 @@ class ListBooks extends React.Component {
                                 <div className="book-shelf-changer">
                                     <select
                                         value={book.shelf || 'none'}
+
                                         onChange={(event) => this.props.handleShelfChange(book, event.target.value)}
                                     >
-                                        <option value="none" disabled>Move to...</option>
+
+                                        <option value="Move to" disabled>Move to...</option>
                                         <option value="currentlyReading">Currently Reading</option>
                                         <option value="wantToRead" >Want to Read</option>
                                         <option value="read"  > Read</option>
@@ -38,6 +44,7 @@ class ListBooks extends React.Component {
                                     </select>
                                 </div>
                             </div>
+
                             <div className="book-title">{book.title} </div>
                             <div className="book-authors">{book.authors}</div>
                         </div>

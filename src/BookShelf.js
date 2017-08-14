@@ -14,6 +14,7 @@ class BookShelf extends React.Component{
                     <ListBooks
                         books={this.props.books}
                         handleShelfChange={this.props.handleShelfChange}
+
                     />
                 </div>
             </div>

@@ -9,6 +9,8 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "enzyme": "^2.9.1",
+    "react-addons-test-utils": "^15.6.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {

@@ -18,10 +18,14 @@ class SearchBooks extends React.Component {
         this.setState({ query: query.trim() })
         this.props.search(query)
     }
-
     render() {
-        const { books } = this.props
+        const { books, sb} = this.props
         const { query } =this.state
+
+        books.map( (b,i) => (
+            ( sb.map( (el) => el.id ).indexOf(b.id) > -1 && (b.shelf=sb[sb.map( (el) => el.id ).indexOf(b.id)].shelf) )
+
+        ))
 
        books.sort(sortBy('title'))
         return (
@@ -44,7 +48,10 @@ class SearchBooks extends React.Component {
                     <ListBooks
                         books={books}
                         handleShelfChange={this.props.handleShelfChange}
+
                     />
+
+
 
                 </div>
             </div>
