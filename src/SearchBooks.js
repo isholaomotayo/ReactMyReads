@@ -7,7 +7,8 @@ import ListBooks  from './ListBooks'
 class SearchBooks extends React.Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
-        handleShelfChange: PropTypes.func.isRequired
+        handleShelfChange: PropTypes.func.isRequired,
+        search: PropTypes.func.isRequired
     }
 
     state = {
@@ -23,7 +24,7 @@ class SearchBooks extends React.Component {
         const { query } =this.state
 
         books.map( (b,i) => (
-            ( sb.map( (el) => el.id ).indexOf(b.id) > -1 && (b.shelf=sb[sb.map( (el) => el.id ).indexOf(b.id)].shelf) )
+             sb.map( (el) => el.id ).indexOf(b.id) > -1 && (b.shelf=sb[sb.map( (el) => el.id ).indexOf(b.id)].shelf)
 
         ))
 

@@ -2,9 +2,8 @@ import   React  from 'react'
 import ListBooks from './ListBooks'
 
 class BookShelf extends React.Component{
-    c2s = (s) => {
-        return s.replace( /([A-Z])/g, " $1" ).charAt(0).toUpperCase() + s.replace( /([A-Z])/g, " $1" ).slice(1)
-    }
+    c2s = s => s.replace( /([A-Z])/g, " $1" ).charAt(0).toUpperCase() + s.replace( /([A-Z])/g, " $1" ).slice(1)
+
 
     render(){
         return(
