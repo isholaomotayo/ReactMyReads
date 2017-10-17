@@ -1,5 +1,5 @@
 {
-  "homepage": "https://isholaomotayo.github.io/react-my-reads-project",
+  "homepage": "https://isholaomotayo.github.io/ReactMyReads",
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
     "form-serialize": "^0.7.2",
